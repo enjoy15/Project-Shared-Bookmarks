@@ -3,6 +3,14 @@ import { getUserIds, getData, setData } from "./storage.js";
 let currentUserId = null;
 
 /**
+ * Generate a unique ID for bookmarks
+ * @returns {string} A unique identifier
+ */
+function generateId() {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
+/**
  * Initialize the application when the page loads
  */
 export function initializeApp() {
@@ -138,7 +146,7 @@ async function copyToClipboard(text, button) {
     }, 2000);
   } catch (err) {
     console.error("Failed to copy to clipboard:", err);
-    alert("Failed to copy to clipboard");
+    alert("Unable to copy URL to clipboard. Please try copying manually or check your browser permissions.");
   }
 }
 
@@ -152,9 +160,9 @@ function handleLike(index) {
   const bookmarks = getData(currentUserId) || [];
   const sortedBookmarks = [...bookmarks].sort((a, b) => b.timestamp - a.timestamp);
   
-  // Find the original index in the unsorted array
+  // Find the original index in the unsorted array using unique ID
   const bookmarkToLike = sortedBookmarks[index];
-  const originalIndex = bookmarks.findIndex(b => b.timestamp === bookmarkToLike.timestamp);
+  const originalIndex = bookmarks.findIndex(b => b.id === bookmarkToLike.id);
   
   if (originalIndex !== -1) {
     bookmarks[originalIndex].likes = (bookmarks[originalIndex].likes || 0) + 1;
@@ -174,6 +182,7 @@ function handleFormSubmit(event) {
   
   const formData = new FormData(event.target);
   const newBookmark = {
+    id: generateId(),
     url: formData.get("url"),
     title: formData.get("title"),
     description: formData.get("description"),
