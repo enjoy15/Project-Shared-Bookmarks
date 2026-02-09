@@ -6,18 +6,37 @@
     <script type="module" src="script.js"></script>
   </head>
   <body>
-    <div id="app">
-        <h1>Welcome to Shared Bookmarked App</h1>
-        <p>please select a user from the list below:</p>
-              <!-- User selector -->
-        <section class="user-selector">
+    <main>
+      <h1>Shared Bookmarks</h1>
+      
+        <!-- User selector -->
+        <section class="user-selector" aria-label="User selection">
         <label for="user-select">Select a user:</label>
         <select id="user-select">
           <option value="">-- Choose a user --</option>
         </select>
       </section>
-        
-    </div>
+
+      <!-- Add bookmark form (hidden until a user is selected) -->
+      <section id="form-section" class="bookmark-form" hidden aria-label="Add a bookmark">
+        <h2>Add a Bookmark</h2>
+        <form id="bookmark-form">
+          <div class="form-field">
+            <label for="input-url">URL</label>
+            <input type="url" id="input-url" name="url" required placeholder="https://example.com" />
+          </div>
+          <div class="form-field">
+            <label for="input-title">Title</label>
+            <input type="text" id="input-title" name="title" required placeholder="My favourite site" />
+          </div>
+          <div class="form-field">
+            <label for="input-description">Description</label>
+            <textarea id="input-description" name="description" required placeholder="A short description..."></textarea>
+          </div>
+          <button type="submit">Add Bookmark</button>
+        </form>
+      </section>        
+
 
   </body>
 </html>
