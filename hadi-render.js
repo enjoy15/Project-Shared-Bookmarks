@@ -8,3 +8,9 @@ export function addUsersToDropdown(userSelect, userIds) {
     userSelect.appendChild(option);
   }
 }
+
+// show start message, when no user is selected.
+export function showStartBookmarksMessage(bookmarksSection) {
+  bookmarksSection.innerHTML =
+    "<p>Please choose a user to view bookmarks.</p>";
+}
