@@ -103,5 +103,7 @@ function showStartScreen() {
 }
 
 function setStatus(text) {
-  statusMessage.textContent = text;
+  if (statusMessage) {
+    statusMessage.textContent = text;
+  }
 }
