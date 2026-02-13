@@ -1,3 +1,5 @@
+import { getData, setData } from "./storage.js";
+
 export function getBookmarksForUser(userId) {
   const savedData = getData(userId);
   const bookmarks = Array.isArray(savedData) ? savedData : [];
