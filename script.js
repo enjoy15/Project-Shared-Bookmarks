@@ -99,7 +99,7 @@ function refreshBookmarksView() {
 function showStartScreen() {
   formSection.hidden = true;
   showStartBookmarksMessage(bookmarksSection);
-  setStatus("Ready.");
+  setStatus("");
 }
 
 function setStatus(text) {
